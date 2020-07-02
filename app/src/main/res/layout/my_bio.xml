@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".MyBio">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/png"/>
+
+            <LinearLayout
+                android:id="@+id/shape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="17dp"
+                        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                        android:tint="#fff" />
+
+                    <TextView
+                        android:id="@+id/my_bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="35dp"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:text="@string/my_bio"
+                        android:textSize="20sp"
+                        android:textAppearance="@style/my_bio" />
+
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    android:onClick="setProfilePic"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/download"
+                    app:civ_border_color="#fff"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:layout_below="@+id/shape"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Name"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:hint="@string/user_ame"
+                    android:inputType="textPersonName"
+                    android:textColor="#2196F3"
+                    android:fontFamily="@font/poppins"
+                    android:textColorHint="#2196F3"
+                    android:textSize="18sp"
+                    android:autofillHints="@string/user_ame" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:layout_below="@+id/l1"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:drawableStart="@drawable/gender_male_female"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Gender"
+                    android:textColor="#000" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="35dp">
+
+                    <RadioButton
+                        android:id="@+id/radio_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30sp"
+                        android:buttonTint="#2196F3"
+                        android:onClick="radioClick"
+                        android:fontFamily="sans-serif"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/radio_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#2196F3"
+                        android:onClick="radioClick"
+                        android:fontFamily="sans-serif"
+                        android:text="Female" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:layout_below="@id/l2"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:drawableStart="@drawable/ic_baseline_book_24"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Class"
+                    android:textColor="#000" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/rbClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/twelth"
+                            android:layout_width="51dp"
+                            android:layout_height="32dp"
+                            android:layout_marginEnd="40dp"
+                            android:onClick="classSelect"
+                            android:background="@drawable/bounded"
+                            android:fontFamily="@font/poppins"
+                            android:text="12th"
+                            android:elevation="4dp"
+                            android:textColor="#2196F3"
+                            android:button="@drawable/buttonshape"
+                            android:textAlignment="center"
+                            android:textAllCaps="false" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/tenth"
+                            android:layout_width="51dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bounded"
+                            android:fontFamily="@font/poppins"
+                            android:text="10th"
+                            android:elevation="4dp"
+                            android:textColor="#2196F3"
+                            android:textAlignment="center"
+                            android:button="@drawable/buttonshape"
+                            android:onClick="classSelect"
+                            android:textAllCaps="false" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:paddingStart="35dp"
+                android:layout_below="@id/l3"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:drawableStart="@drawable/school"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Board"
+                    android:textColor="#000" />
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="40dp"
+                    android:background="@drawable/buttonshape"
+                    android:fontFamily="@font/poppins"
+                    android:text="CBSE"
+                    android:elevation="4dp"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical"
+                android:layout_below="@id/l4"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:drawableStart="@drawable/ic_baseline_menu_book_24"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Exam"
+                    android:textColor="#000" />
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/buttonshape"
+                    android:fontFamily="@font/poppins"
+                    android:text="IIT JEE"
+                    android:elevation="4dp"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:paddingStart="35dp"
+                android:layout_below="@id/l5"
+                android:paddingEnd="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_baseline_date_range_24"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/date_of_birth"
+                    android:textColor="#000" />
+
+                <DatePicker
+                    android:id="@+id/date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:layerType="hardware"
+                    android:soundEffectsEnabled="true"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:spinnersShown="true" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:onClick="saveData"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:background="#18A0FB"
+        android:fontFamily="@font/poppins"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/one">
+
+        <item android:id="@+id/dashboard"
+            android:title="Dashboard"
+            android:icon="@drawable/ic_dashboard"/>
+        <item android:id="@+id/savedpdf"
+            android:title="Saved Pdf"
+            android:icon="@drawable/ic_savedpdf"/>
+        <item android:id="@+id/history"
+            android:title="History"
+            android:icon="@drawable/ic_history"/>
+        <item android:id="@+id/aboutUs"
+            android:title="About Us"
+            android:icon="@drawable/about_icon"/>
+        <item android:id="@+id/contactus"
+            android:title="Contact Us"
+            android:icon="@drawable/ic_contactus"/>
+    </group>
+
+    <group android:id="@+id/two">
+        <item android:id="@+id/setting"
+            android:title="Setting"
+            android:icon="@drawable/ic_setting"/>
+    </group>
+</menu>

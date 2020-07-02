@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="297dp"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47.45dp"
+        android:layout_marginStart="21.45dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="93.1dp"
+            android:layout_height="93.1dp"
+            android:layout_gravity="center"
+            android:onClick="setProfilePic"
+            android:src="@drawable/download"
+            app:civ_border_color="#18A0FB"
+            app:civ_border_overlay="true"
+            app:civ_border_width="2.5dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/profile_image"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JOHN WICK"
+                android:fontFamily="@font/poppins"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textColor="#18A0FB"
+                android:textSize="14sp"
+                android:layout_below="@+id/username"
+                android:fontFamily="@font/poppins"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/lines2"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_below="@id/r1"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="26.95dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#000" />
+
+
+
+</RelativeLayout>

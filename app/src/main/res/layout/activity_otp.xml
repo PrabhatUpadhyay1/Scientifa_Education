@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_Details.Otp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="61dp"
+            android:layout_marginStart="89dp"
+            android:layout_marginEnd="89dp"
+            android:fontFamily="@font/poppins"
+            android:text="Verify Account"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#87000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="1dp"
+            android:layout_marginStart="89dp"
+            android:layout_marginEnd="89dp"
+            android:text="@string/mobile_verification_has_nsuccessfully_done"
+            android:textAlignment="center"
+            android:textColor="#C7000000"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/we_have_send_the_top_on_8700564484_nwill_apply_auto_to_the_fields"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#99000000"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#99000000"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:text="Will apply auto to the fields"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#99000000"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"/>
+
+        <com.chaos.view.PinView
+            android:id="@+id/pin_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/poppins"
+            android:textSize="40sp"
+            app:itemHeight="45dp"
+            app:itemSpacing="20dp"
+            app:itemWidth="45dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/if_you_don_t_receive_a_code"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="Resend"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#18A0FB"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="51dp"
+            android:background="@drawable/buttonshape"
+            android:fontFamily="@font/poppins"
+            android:text="Verify"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</ScrollView>

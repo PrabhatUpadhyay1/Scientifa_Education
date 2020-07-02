@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/landing_scr"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/landing_scr"
+    android:elevation="4dp"
+    tools:context=".Landing_Screen">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="140dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:transitionName="logo_transition"
+        android:background="@drawable/zondicons_education"
+        android:elevation="5dp"/>
+
+    <TextView
+        android:id="@+id/scientifica"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="360dp"
+        android:text="@string/scientifica"
+        android:fontFamily="@font/poppins"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/scientifica"
+        android:gravity="center_horizontal|top"
+        />
+    <TextView
+        android:id="@+id/education"
+        android:layout_width="180dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal|top"
+        android:text="@string/education"
+        android:textAppearance="@style/education" />
+
+    <TextView
+        android:id="@+id/scientifica2"
+        android:layout_width="170dp"
+        android:layout_height="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal|top"
+        android:text="@string/scientificao"
+        android:textAppearance="@style/scientifica2" />
+</RelativeLayout>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Exams_Asked">
+
+
+<!--    <ScrollView-->
+<!--        android:id="@+id/scrollView2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:src="@drawable/ic_baseline_person_24" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Hey"-->
+<!--                        android:textSize="21dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/scrollView2"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="Welcome to Doubtnut"-->
+<!--                        android:textSize="17dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/scrollView2"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:background="#fff"-->
+<!--                app:cardCornerRadius="5dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingStart="20dp"-->
+<!--                        android:text="Aap Kaun se exam ki tyari kar rhe ho?"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="16dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/ncert"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="NCERT"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/jee"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="JEE"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/class_selction"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:background="#fff"-->
+<!--                app:cardCornerRadius="5dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingStart="20dp"-->
+<!--                        android:text="Aap Kaun se class me ho?"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="16dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/class11"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="CLASS 11"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/class12"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="CLASS 12"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:background="#fff"-->
+<!--                app:cardCornerRadius="5dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingStart="20dp"-->
+<!--                        android:text="Aap Kaun sa subject padhna chahte hain??"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="16dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/maths"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Maths"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/chemistry"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Chemistry"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/physics"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:background="@drawable/rectsngular_shape"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="PHYSICS"-->
+<!--                        android:textColor="#000"-->
+<!--                        android:textSize="18dp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </ScrollView>-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/askdoubt"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#F05E23"-->
+<!--        android:fontFamily="sans-serif-condensed-light"-->
+<!--        android:text="Ask your first Doubt"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textSize="17dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

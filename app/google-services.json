@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "409360689168",
+    "firebase_url": "https://anant-vijay.firebaseio.com",
+    "project_id": "anant-vijay",
+    "storage_bucket": "anant-vijay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409360689168:android:cafd3508389b3ffc54c295",
+        "android_client_info": {
+          "package_name": "com.prabhat.doubtnut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409360689168-ne9lvdoobsohv2grm70uq67s6itpt33s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbksiK-AsFF8XGkbM4fVNvsFhp87KZ1nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409360689168-ne9lvdoobsohv2grm70uq67s6itpt33s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
