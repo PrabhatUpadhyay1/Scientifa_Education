@@ -9,17 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -28,15 +24,11 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.khizar1556.mkvideoplayer.MKPlayer;
-import com.khizar1556.mkvideoplayer.MKPlayerActivity;
 import com.prabhat.doubtnut.Adapter.recommendedVideoAdapter;
-import com.prabhat.doubtnut.Model.Model;
+import com.prabhat.doubtnut.Model.Maths_Model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.prabhat.doubtnut.R.string.likes;
 
 public class videoView extends AppCompatActivity {
     //    MKPlayer mkplayer;
@@ -44,7 +36,7 @@ public class videoView extends AppCompatActivity {
     TextView likes;
     recommendedVideoAdapter adapter;
     RecyclerView recyclerView;
-    List<Model> list;
+    List<Maths_Model> list;
     ImageView fullScreen;
     Button DownloadPdf;
 
@@ -66,7 +58,7 @@ public class videoView extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        getVideoSolution();
+        getVideoSolution("Class 12","Mathematics");
 
         fullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,16 +125,16 @@ public class videoView extends AppCompatActivity {
         videoView.stopPlayback();
     }
 
-    public void getVideoSolution() {
+    public void getVideoSolution(String category, String subject) {
 
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("videoSolution").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection(category).document("Subjects").collection(subject).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
                 }
                 for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-                    Model model = documentChange.getDocument().toObject(Model.class);
+                    Maths_Model model = documentChange.getDocument().toObject(Maths_Model.class);
                     list.add(model);
                     recyclerView.setAdapter(adapter);
                 }

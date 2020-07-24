@@ -99,7 +99,7 @@ public class Otp extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 //                            Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
-                            startActivity(new Intent(Otp.this, MyBio.class));
+                            startActivity(new Intent(Otp.this, Home.class));
                             finish();
                             // ...
                         } else {

@@ -1,68 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="338dp"
+    android:elevation="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/doubt_cardView"
-        android:layout_width="313dp"
+        android:layout_width="match_parent"
         android:layout_height="338dp"
-        app:cardCornerRadius="15dp"
+        android:layout_centerInParent="true"
         android:background="#fff"
-        android:layout_centerInParent="true">
+        app:cardCornerRadius="15dp">
 
 
         <LinearLayout
+            android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="144dp"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="25dp"
-            android:orientation="vertical"
-            android:background="@drawable/bounded">
+            android:background="@drawable/bounded"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="46dp"
-                android:src="@drawable/ic_uplo"
                 android:layout_gravity="center"
-                android:tint="#18A0FB"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_uplo"
+                android:tint="#18A0FB" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Drop Image"
                 android:layout_marginTop="25dp"
-                android:textAllCaps="true"
-                android:gravity="center"
-                android:textColor="#18A0FB"
-                android:textSize="14sp"
+                android:layout_marginBottom="13dp"
                 android:fontFamily="@font/poppins"
-                android:layout_marginBottom="13dp"/>
-
+                android:gravity="center"
+                android:text="Drop Image"
+                android:textAllCaps="true"
+                android:textColor="#18A0FB"
+                android:textSize="14sp" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="25dp" />
+
         <Button
-            android:id="@+id/upload2"
+            android:id="@+id/upload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/or"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="56dp"
             android:background="@drawable/buttonshape1"
             android:drawableStart="@drawable/upload"
             android:drawableTint="#fff"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="45dp"
             android:elevation="8dp"
+            android:fontFamily="@font/poppins"
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="34dp"
-            android:layout_marginBottom="56dp"
-            android:fontFamily="@font/poppins"
             android:text="@string/upload_image"
             android:textAllCaps="false"
             android:textColor="#fff"

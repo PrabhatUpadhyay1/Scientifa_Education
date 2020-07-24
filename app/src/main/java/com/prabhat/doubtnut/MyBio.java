@@ -21,7 +21,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.util.HashMap;
@@ -40,6 +42,8 @@ public class MyBio extends AppCompatActivity {
     int gallary_pic = 200;
     CircleImageView imageViewinput;
     Uri imageuri;
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class MyBio extends AppCompatActivity {
         setContentView(R.layout.my_bio);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        firestore= FirebaseFirestore.getInstance();
         radioGroup = findViewById(R.id.radioGroup);
         radioGroup2 = findViewById(R.id.rbClass);
         tenth = findViewById(R.id.tenth);
@@ -114,7 +119,7 @@ public class MyBio extends AppCompatActivity {
             map.put("Date", Date);
             map.put("Class", Class);
             map.put("ImageUri", imageuri);
-            firestore.collection("UserInfo").document().set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            firestore.collection("UserInfo").document(auth.getUid()).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(MyBio.this, "saved", Toast.LENGTH_SHORT).show();
@@ -133,10 +138,28 @@ public class MyBio extends AppCompatActivity {
     }
 
     public boolean validate() {
-        if (Name != null && gender != null && Class != null && Date != null && !Date.equals("27_06_2020")) {
-            return true;
+        if (Name == null) {
+            return false;
         }
-        return false;
+        if (gender == null) {
+            return false;
+        }
+        if (Class == null) {
+            return false;
+        }
+        if (Date == null) {
+            return false;
+        }
+        if (Date.equals("27_06_2020")) {
+            return false;
+        }
+
+        return true;
+
+//        if (Name != null && gender != null && Class != null && Date != null && !Date.equals("27_06_2020")) {
+//            return true;
+//        }
+//        return false;
     }
 
     public void setProfilePic(View view) {

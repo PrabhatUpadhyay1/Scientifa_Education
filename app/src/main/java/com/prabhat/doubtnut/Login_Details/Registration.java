@@ -28,8 +28,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.prabhat.doubtnut.MyBio;
+import com.prabhat.doubtnut.OtpAfterRegistration;
 import com.prabhat.doubtnut.R;
-import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.util.HashMap;
 
@@ -40,7 +40,7 @@ public class Registration extends AppCompatActivity {
     ImageView logo;
     TextView login;
     FirebaseFirestore mfirestore;
-    GoogleSignInButton google;
+    Button google;
     //Google
     private GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 100;
@@ -50,7 +50,7 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.registration);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         google = findViewById(R.id.google);
@@ -153,7 +153,7 @@ public class Registration extends AppCompatActivity {
         if (userPhoneNumber.equals(null)) {
             phoneNumber.setError("Enter the your Mobile Number");
         }
-        Intent intent = new Intent(Registration.this, Otp.class);
+        Intent intent = new Intent(Registration.this, OtpAfterRegistration.class);
         intent.putExtra("phoneNumber", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
         Log.i("prabhatno", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
         startActivity(intent);

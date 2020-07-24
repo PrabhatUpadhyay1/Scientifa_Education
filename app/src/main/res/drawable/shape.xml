@@ -4,6 +4,7 @@
     android:bottomRightRadius="15dp"/>
     <gradient
         android:angle="360"
-        android:startColor="#0064B3"
-        android:endColor="#03A9F4"/>
+        android:startColor="#2875DC"
+        android:centerColor="#2F80ED"
+        android:endColor="#2D9EE0"/>
 </shape>

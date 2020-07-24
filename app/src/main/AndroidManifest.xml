@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyDoubt"></activity>
+        <activity android:name=".setting_menu"/>
+
+        <activity android:name=".Quiz_Screen" />
+        <activity android:name=".OtpAfterRegistration" />
+        <activity android:name=".Search_Screen" android:theme="@style/MyCustomTheme"/>
+        <activity android:name=".Practices" />
+        <activity android:name=".MyCourses" />
+        <activity android:name=".MyDoubt" />
         <activity
             android:name=".videoFullScreen"
             android:screenOrientation="landscape" />
@@ -24,9 +31,6 @@
         <activity
             android:name=".Login_Details.Otp"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Exams_Asked"
-            android:theme="@style/login" />
         <activity
             android:name=".Login_Details.Registration"
             android:theme="@style/login" />

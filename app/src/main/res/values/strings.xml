@@ -44,5 +44,23 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <string-array name="All_Categories">
+        <item>Class 11</item>
+        <item>Class 12</item>
+        <item>JEE Mains</item>
+        <item>JEE Advance</item>
+    </string-array>
 
+
+    <string-array name="SUbjects">
+        <item>Mathematics</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+    </string-array>
+
+    <string-array name="Difficultylevel">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Difficult</item>
+    </string-array>
 </resources>

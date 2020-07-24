@@ -2,7 +2,6 @@ package com.prabhat.doubtnut;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
@@ -13,7 +12,7 @@ public class pdfView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf__view);
+        setContentView(R.layout.pdf__view);
 
         String url = getIntent().getStringExtra("Link");
 

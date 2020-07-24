@@ -1,7 +1,6 @@
 package com.prabhat.doubtnut.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prabhat.doubtnut.Model.Model;
 import com.prabhat.doubtnut.Model.MyDoubtModel;
 import com.prabhat.doubtnut.R;
-import com.prabhat.doubtnut.pdfView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

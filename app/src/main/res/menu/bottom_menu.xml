@@ -1,20 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="Home"
+        android:title="HOME"
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
         />
     <item
         android:id="@+id/myDoubts"
         android:icon="@drawable/ic_question"
-        android:title="My Doubt" />
+        android:title="MY DOUBT" />
     <item
-        android:id="@+id/favorites"
+        android:id="@+id/cources"
         android:icon="@drawable/ic_course"
-        android:title="My Courses" />
+        android:title="MY COURSES" />
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_pro"
-        android:title="Profile" />
+        android:id="@+id/practices"
+        android:icon="@drawable/ic_practices"
+        android:title="PRACTICE" />
 </menu>

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ import java.util.HashMap;
 
 public class Login_Page extends AppCompatActivity {
 
-    GoogleSignInButton google;
+    Button google;
     TextView all_rights, signUpText;
     ImageView logo;
     int RC_SIGN_IN = 100;
@@ -74,7 +75,7 @@ public class Login_Page extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        imageView = findViewById(R.id.logo);
+        logo = findViewById(R.id.logo);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +85,6 @@ public class Login_Page extends AppCompatActivity {
 
 
         all_rights = findViewById(R.id.all_rights_);
-        logo = findViewById(R.id.logo);
         signUpText = findViewById(R.id.signup_text);
         google = findViewById(R.id.google);
         mfirestore = FirebaseFirestore.getInstance();
@@ -178,7 +178,8 @@ public class Login_Page extends AppCompatActivity {
 
     public void getPhoneNumber(View view) {
         String userPhoneNumber = phoneNumber.getText().toString().trim();
-        if (userPhoneNumber.equals(null)) {
+        if (userPhoneNumber.isEmpty()) {
+            phoneNumber.setEnabled(true);
             phoneNumber.setError("Enter the your Mobile Number");
         } else {
             Intent intent = new Intent(Login_Page.this, Otp.class);

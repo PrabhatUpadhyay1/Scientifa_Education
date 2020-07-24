@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".MyDoubt">
+    tools:context=".Practices">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -114,22 +114,75 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/poppins"
-            android:text="MY DOUBTS"
+            android:text="Practice"
             android:textColor="#000"
             android:textSize="20sp" />
 
-        <ScrollView
+        <RelativeLayout
+            android:id="@+id/relative1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/my_doubts"
-            android:layout_marginTop="5dp">
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/dropdown2"
+                android:textColor="#000"
+                android:entries="@array/All_Categories"
+                android:textSize="14sp" />
 
-        </ScrollView>
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/dropdown2"
+                android:textColor="#000"
+                android:entries="@array/Difficultylevel"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relative1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/dropdown2"
+                android:textColor="#000"
+                android:entries="@array/SUbjects"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/relative2"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation_bar"
@@ -145,6 +198,7 @@
             app:itemTextColor="@color/nav_item_text_color"
             app:itemIconSize="27dp"
             app:menu="@menu/bottom_menu" />
+
     </RelativeLayout>
 
 

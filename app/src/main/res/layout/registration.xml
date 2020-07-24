@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".Login_Details.Login_Page">
+    tools:context=".Login_Details.Registration">
 
     <LinearLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:transitionName="logo"
         android:layout_alignParentTop="true"
         android:background="@drawable/shape"
         android:orientation="vertical">
@@ -38,7 +37,7 @@
         android:elevation="10dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/login_cardView"
+            android:id="@+id/signUp_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp">
@@ -63,15 +62,17 @@
                         android:paddingBottom="1.5sp">
 
                         <TextView
+                            android:id="@+id/login_text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="#305CAB"
+                            android:background="#fff"
                             android:fontFamily="@font/poppins"
                             android:padding="5dp"
                             android:text="@string/login"
                             android:textAlignment="center"
-                            android:textColor="#fff"
+                            android:onClick="loginText"
+                            android:textColor="#305CAB"
                             android:textSize="22sp" />
 
                         <TextView
@@ -79,12 +80,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="#fff"
+                            android:background="#305CAB"
                             android:fontFamily="@font/poppins"
                             android:padding="5dp"
                             android:text="@string/signup"
                             android:textAlignment="center"
-                            android:textColor="#305CAB"
+                            android:textColor="#fff"
                             android:textSize="22sp" />
 
                     </LinearLayout>
@@ -95,6 +96,7 @@
                         android:background="@drawable/line" />
 
                 </LinearLayout>
+
 
                 <Button
                     android:id="@+id/google"
@@ -154,6 +156,7 @@
 
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -186,10 +189,9 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:textColorHint="#000"
+                        android:layout_weight="1"
                         app:errorEnabled="true"
-                        app:hintAnimationEnabled="true"
                         android:hint="@string/mobile_number_10_digit"
                         app:hintEnabled="true">
 
@@ -208,7 +210,6 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -218,9 +219,8 @@
                     android:background="@drawable/buttonshape"
                     android:elevation="10dp"
                     android:fontFamily="@font/poppins"
-                    android:text="@string/signup_using_otp"
-                    android:onClick="getPhoneNumber"
-                    android:textColor="#fff"
+                    android:text="Signup Using OTP"
+                    android:onClick="getNewPhoneNumber"
                     android:textAllCaps="false"
                     android:textSize="18sp" />
 

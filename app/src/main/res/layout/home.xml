@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="#fff"
     tools:context=".Home">
 
     <com.google.android.material.navigation.NavigationView
@@ -83,7 +84,7 @@
                 <RelativeLayout
                     android:id="@+id/rectangle_6"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="170dp"
                     android:background="@drawable/homeup">
 
                     <RelativeLayout
@@ -96,7 +97,7 @@
                             android:layout_width="45dp"
                             android:layout_height="35.36dp"
                             android:layout_marginStart="24dp"
-                            android:layout_marginTop="52dp"
+                            android:layout_marginTop="13dp"
                             android:elevation="1dp"
                             android:src="@drawable/zondicons_education" />
 
@@ -104,7 +105,7 @@
                             android:layout_width="148dp"
                             android:layout_height="52dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="46dp"
+                            android:layout_marginTop="7dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -131,8 +132,8 @@
                             android:layout_width="41.9dp"
                             android:layout_height="41.9dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="50dp"
-                            android:layout_marginEnd="26dp"
+                            android:layout_marginTop="10.55dp"
+                            android:layout_marginEnd="24dp"
                             android:elevation="1dp"
                             android:src="@drawable/download"
                             app:civ_border_color="#fff"
@@ -141,11 +142,12 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/search_view"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:layout_below="@id/r1"
                         android:layout_marginStart="12dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="33dp"
                         android:layout_marginEnd="12dp"
                         android:layout_marginBottom="21dp"
                         android:background="@drawable/buttonshape"
@@ -165,28 +167,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rectangle_6"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="14dp"
+                    android:paddingTop="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="10dp">
 
 
-                    <androidx.cardview.widget.CardView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_weight="1"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="10dp">
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/cardviewbackground2"
+                        android:elevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/cardviewbackground"
                             android:orientation="vertical">
 
                             <ImageView
@@ -205,24 +206,23 @@
                                 android:text="@string/mathematics"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="10sp" />
+                                android:textSize="9sp" />
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/cardviewbackground"
-                        android:elevation="10dp"
+                        android:elevation="8dp"
                         android:paddingTop="2dp"
-                        android:paddingBottom="2dp"
-                        app:cardCornerRadius="10dp">
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -245,22 +245,21 @@
                                 android:text="Chemistry"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="10sp" />
+                                android:textSize="9sp" />
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/cardviewbackground"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="10dp">
+                        android:elevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -283,22 +282,21 @@
                                 android:text="Physics"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="10sp" />
+                                android:textSize="9sp" />
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/cardviewbackground"
-                        android:elevation="10dp"
-                        app:cardCornerRadius="10dp">
+                        android:elevation="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -321,10 +319,10 @@
                                 android:text="Join Us"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="10sp" />
+                                android:textSize="9sp" />
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -376,7 +374,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="11dp"
                     android:background="@drawable/buttonshape"
-                    android:elevation="7dp"
+                    android:elevation="10dp"
                     android:fontFamily="@font/poppins"
                     android:text="Send"
                     android:textAlignment="center"
@@ -435,7 +433,7 @@
                     android:drawableStart="@drawable/upload"
                     android:drawableTint="#fff"
                     android:onClick="askDoubt"
-                    android:elevation="8dp"
+                    android:elevation="10dp"
                     android:fontFamily="@font/poppins"
                     android:paddingStart="90dp"
                     android:paddingEnd="80dp"
@@ -505,15 +503,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/p1"
                     android:layout_marginStart="19dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="4dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="22dp"
                         android:orientation="horizontal">
 
@@ -523,6 +519,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/poppins"
                             android:gravity="top"
+                            android:layout_marginStart="15dp"
                             android:text="@string/ncert_video_solution"
                             android:textAppearance="@style/popular_boo" />
 
@@ -531,6 +528,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="19dp"
                             android:gravity="end"
+                            android:layout_marginStart="15dp"
                             android:text="@string/see_all"
                             android:textAppearance="@style/see_all" />
 
@@ -540,7 +538,7 @@
                         android:id="@+id/ncert_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"/>
 
                 </LinearLayout>
 
@@ -550,7 +548,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/p2"
                     android:layout_marginStart="19dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="4dp"
                     android:orientation="vertical">
 
@@ -585,7 +583,7 @@
                         android:id="@+id/jee_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"/>
 
                 </LinearLayout>
 
@@ -595,7 +593,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/p3"
                     android:layout_marginStart="19dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="4dp"
                     android:orientation="vertical">
 
@@ -630,7 +628,7 @@
                         android:id="@+id/jee_advance_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"/>
 
                 </LinearLayout>
 
@@ -647,8 +645,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_marginBottom="22dp"
                         android:orientation="horizontal">
 
@@ -656,6 +652,7 @@
                             android:id="@+id/pdf_solition"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins"
                             android:gravity="top"
                             android:text="PDF Solution"
@@ -665,6 +662,7 @@
                             android:id="@+id/see_all_5"
                             android:layout_width="match_parent"
                             android:layout_height="19dp"
+                            android:layout_marginEnd="15dp"
                             android:gravity="end"
                             android:text="@string/see_all"
                             android:textAppearance="@style/see_all" />
@@ -692,9 +690,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="31dp"
+                        android:layout_marginBottom="15dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -703,6 +699,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/poppins"
                             android:gravity="top"
+                            android:layout_marginStart="15dp"
                             android:text="Blogs"
                             android:textAppearance="@style/popular_boo" />
 
@@ -710,6 +707,7 @@
                             android:id="@+id/see_all_6"
                             android:layout_width="match_parent"
                             android:layout_height="19dp"
+                            android:layout_marginEnd="15dp"
                             android:gravity="end"
                             android:text="@string/see_all"
                             android:textAppearance="@style/see_all" />
@@ -730,20 +728,18 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation_bar"
-            style="@style/navigationbar"
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="1dp"
             android:layout_marginEnd="1dp"
-            android:background="@drawable/navigation_background"
+            android:background="#fff"
             android:elevation="4dp"
             android:textAlignment="center"
             app:itemIconSize="27dp"
             app:itemIconTint="@color/nav_item_selector"
             app:itemTextColor="@color/nav_item_text_color"
             app:menu="@menu/bottom_menu" />
-
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

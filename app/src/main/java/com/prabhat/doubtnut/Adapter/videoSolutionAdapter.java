@@ -2,7 +2,6 @@ package com.prabhat.doubtnut.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,25 +11,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.prabhat.doubtnut.Home;
-import com.prabhat.doubtnut.Model.Model;
 import com.prabhat.doubtnut.R;
 import com.prabhat.doubtnut.videoView;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class videoSolutionAdapter extends RecyclerView.Adapter<videoSolutionAdapter.MyViewHolder> {
 
-    List<Model> list;
+    ArrayList<String> list, list2, list3, list4;
     Context context;
 
-    public videoSolutionAdapter(List<Model> list, Context context) {
+    public videoSolutionAdapter(ArrayList<String> list, ArrayList<String> list2, ArrayList<String> list3, ArrayList<String> list4, Context context) {
         this.list = list;
+        this.list2 = list2;
+        this.list3 = list3;
+        this.list4 = list4;
         this.context = context;
     }
 
@@ -44,14 +42,17 @@ public class videoSolutionAdapter extends RecyclerView.Adapter<videoSolutionAdap
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
-        final String Link = list.get(position).getLink();
 
-        Picasso.get().load(list.get(position).getImageUri()).into(holder.imageView);
+        final String Tittle = list.get(position);
 
-        final String Tittle = list.get(position).getTittle();
+
+        Picasso.get().load(list2.get(position)).into(holder.imageView);
+
+        final String Link = list3.get(position);
+
+        final String PDF = list4.get(position);
 
         holder.videoTittle.setText(Tittle);
-        final String PDF=list.get(position).getPdf();
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class videoSolutionAdapter extends RecyclerView.Adapter<videoSolutionAdap
                 Intent intent = new Intent(holder.imageView.getContext(), videoView.class);
                 intent.putExtra("Link", Link);
                 intent.putExtra("Video Tittle", Tittle);
-                intent.putExtra("PDF",PDF);
+                intent.putExtra("PDF", PDF);
                 context.startActivity(intent);
             }
         });
