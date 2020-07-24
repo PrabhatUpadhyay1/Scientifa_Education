@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="274dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/bounded2"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:background="@drawable/bounded3"
+        android:fontFamily="@font/poppins"
+        android:paddingStart="10dp"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l1"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Which is the smallest number ?"
+        android:textColor="#3C3C3C"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question"
+        android:layout_marginStart="15dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#444040"
+            android:fontFamily="@font/poppins"
+            android:onClick="radioClick"
+            android:text="Male"
+            android:textColor="#444040" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#444040"
+            android:fontFamily="@font/poppins"
+            android:onClick="radioClick"
+            android:text="Female"
+            android:textColor="#444040" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#444040"
+            android:fontFamily="@font/poppins"
+            android:onClick="radioClick"
+            android:text="Male"
+            android:textColor="#444040" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#444040"
+            android:fontFamily="@font/poppins"
+            android:onClick="radioClick"
+            android:text="Female"
+            android:textColor="#444040" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="124dp"
+        android:layout_height="27dp"
+        android:layout_below="@id/radioGroup"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/buttonshape"
+        android:elevation="4dp"
+        android:fontFamily="@font/poppins"
+        android:text="Submit"
+        android:textColor="#fff" />
+
+</RelativeLayout>

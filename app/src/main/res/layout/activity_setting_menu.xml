@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting_menu"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:drawablePadding="20dp"
+        android:textSize="24dp"
+        android:drawableStart="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:layout_below="@id/back"
+        android:drawablePadding="15dp"
+        android:textSize="22sp"
+        android:drawableStart="@drawable/ic_baseline_info_24"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="25dp"/>
+
+
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms and Conditions"
+        android:layout_below="@id/logout"
+        android:drawableStart="@drawable/terms_and_condition"
+        android:drawablePadding="15dp"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/privacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy policy"
+        android:drawableStart="@drawable/policy"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/terms"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:layout_below="@id/privacy"
+        android:textSize="22sp"
+        android:drawableStart="@drawable/coontact"
+        android:drawableTint="#333"
+        android:drawablePadding="15dp"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/about_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About us"
+        android:drawableStart="@drawable/about"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/contact"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/rate_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate Us"
+        android:drawableStart="@drawable/rateus"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/about_us"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/infite_friend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invite Friends"
+        android:drawableStart="@drawable/invitefriend"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/rate_us"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/how_to_use"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How To Use App"
+        android:drawableStart="@drawable/question"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/infite_friend"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/notification_seting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notification Setting"
+        android:drawableStart="@drawable/ic_baseline_notifications_none_24"
+        android:drawablePadding="15dp"
+        android:layout_below="@id/how_to_use"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="v1.0.0"
+        android:layout_alignParentBottom="true"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"/>
+
+
+
+</RelativeLayout>
