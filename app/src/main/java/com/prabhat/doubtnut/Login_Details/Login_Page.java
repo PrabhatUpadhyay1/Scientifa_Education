@@ -36,6 +36,7 @@ import com.prabhat.doubtnut.R;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Login_Page extends AppCompatActivity {
 
@@ -56,32 +57,14 @@ public class Login_Page extends AppCompatActivity {
 
     ImageView imageView;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if (currentUser != null) {
-            Toast.makeText(Login_Page.this, "You are logged in", Toast.LENGTH_SHORT).show();
-            Intent m = new Intent(Login_Page.this, Home.class);
-            startActivity(m);
-            finish();
-        }
-    }
 
+    String modeOfLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login__page);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        logo = findViewById(R.id.logo);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login_Page.this, Home.class));
-            }
-        });
 
 
         all_rights = findViewById(R.id.all_rights_);
@@ -93,6 +76,7 @@ public class Login_Page extends AppCompatActivity {
 
         // Configure Google Sign In
 
+        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -139,9 +123,6 @@ public class Login_Page extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
 
-            Intent n = new Intent(Login_Page.this, Home.class);
-            startActivity(n);
-            finish();
             Toast.makeText(Login_Page.this, "Logged in", Toast.LENGTH_SHORT).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -157,23 +138,12 @@ public class Login_Page extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        HashMap<String, Object> hashMap = new HashMap();
-        hashMap.put("Email", googleSignInAccount.getEmail());
-        hashMap.put("Name", googleSignInAccount.getDisplayName());
 
-        mfirestore.collection("googleCustomer").document(googleSignInAccount.getId()).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                finish();
-
-            }
-
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Login_Page.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        Intent n = new Intent(Login_Page.this, Home.class);
+        modeOfLogin=account.getId().toString();
+        n.putExtra("modeOfLogin",account.getId().toString());
+        startActivity(n);
+        finish();
     }
 
     public void getPhoneNumber(View view) {
@@ -185,7 +155,20 @@ public class Login_Page extends AppCompatActivity {
             Intent intent = new Intent(Login_Page.this, Otp.class);
             intent.putExtra("phoneNumber", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
             Log.i("prabhatno", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
+            modeOfLogin=auth.getUid().toString();
+            intent.putExtra("modeOfLogin",auth.getUid().toString());
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        FirebaseUser user=auth.getCurrentUser();
+        if(user!=null){
+            Intent intent=new Intent(Login_Page.this,Home.class);
+            intent.putExtra("modeOfLogin",modeOfLogin);
+            startActivity(intent);
+        }
+        super.onStart();
     }
 }

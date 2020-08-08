@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="274dp"
+    android:layout_height="300dp"
     android:layout_margin="20dp"
     android:background="@drawable/bounded2"
     android:elevation="8dp">
@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:buttonTint="#444040"
             android:fontFamily="@font/poppins"
-            android:onClick="radioClick"
             android:text="Male"
             android:textColor="#444040" />
 
@@ -55,7 +54,6 @@
             android:layout_height="wrap_content"
             android:buttonTint="#444040"
             android:fontFamily="@font/poppins"
-            android:onClick="radioClick"
             android:text="Female"
             android:textColor="#444040" />
 
@@ -65,7 +63,6 @@
             android:layout_height="wrap_content"
             android:buttonTint="#444040"
             android:fontFamily="@font/poppins"
-            android:onClick="radioClick"
             android:text="Male"
             android:textColor="#444040" />
 
@@ -75,12 +72,12 @@
             android:layout_height="wrap_content"
             android:buttonTint="#444040"
             android:fontFamily="@font/poppins"
-            android:onClick="radioClick"
             android:text="Female"
             android:textColor="#444040" />
     </RadioGroup>
 
     <Button
+        android:id="@+id/submit"
         android:layout_width="124dp"
         android:layout_height="27dp"
         android:layout_below="@id/radioGroup"
@@ -92,4 +89,15 @@
         android:text="Submit"
         android:textColor="#fff" />
 
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submit"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:elevation="4dp"
+        android:fontFamily="@font/poppins"
+        android:textSize="18sp"
+        android:textColor="#4CAF50" />
 </RelativeLayout>

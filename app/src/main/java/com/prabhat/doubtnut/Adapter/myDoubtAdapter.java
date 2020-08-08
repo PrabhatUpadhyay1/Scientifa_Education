@@ -18,11 +18,12 @@ import java.util.List;
 
 public class myDoubtAdapter extends RecyclerView.Adapter<myDoubtAdapter.MyViewHolder> {
 
-    List<MyDoubtModel> list;
+    List<String> list,list2;
     Context context;
 
-    public myDoubtAdapter(List<MyDoubtModel> list, Context context) {
+    public myDoubtAdapter(List<String> list, List<String> list2, Context context) {
         this.list = list;
+        this.list2 = list2;
         this.context = context;
     }
 
@@ -40,11 +41,11 @@ public class myDoubtAdapter extends RecyclerView.Adapter<myDoubtAdapter.MyViewHo
 //
 //        Log.i("pdflink", Link + "");
 
-        holder.doubtText.setText(list.get(position).getDoubtText());
+        holder.doubtText.setText(list.get(position));
+//
+        Picasso.get().load(list2.get(position)).into(holder.doubtImage);
 
-        Picasso.get().load(list.get(position).getDoubtImage()).into(holder.doubtImage);
-
-        holder.Answered.setText(list.get(position).getAnswered());
+//        holder.Answered.setText(list.get(position).getAnswered());
 
 //
 //        holder.doubtImage.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +71,6 @@ public class myDoubtAdapter extends RecyclerView.Adapter<myDoubtAdapter.MyViewHo
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             doubtText = itemView.findViewById(R.id.doubt_text);
             doubtImage = itemView.findViewById(R.id.doubt_image);
             Answered = itemView.findViewById(R.id.doubt_answered);

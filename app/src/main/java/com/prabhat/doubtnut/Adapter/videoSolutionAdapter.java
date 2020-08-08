@@ -45,7 +45,6 @@ public class videoSolutionAdapter extends RecyclerView.Adapter<videoSolutionAdap
 
         final String Tittle = list.get(position);
 
-
         Picasso.get().load(list2.get(position)).into(holder.imageView);
 
         final String Link = list3.get(position);
@@ -61,6 +60,13 @@ public class videoSolutionAdapter extends RecyclerView.Adapter<videoSolutionAdap
                 intent.putExtra("Link", Link);
                 intent.putExtra("Video Tittle", Tittle);
                 intent.putExtra("PDF", PDF);
+
+                //recomnded
+                intent.putExtra("list",list);
+                intent.putExtra("list2",list2);
+                intent.putExtra("list3",list3);
+                intent.putExtra("list4",list4);
+
                 context.startActivity(intent);
             }
         });

@@ -4,9 +4,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="#fff"
+    android:fitsSystemWindows="true"
     tools:context=".Home">
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -94,6 +95,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/just"
                             android:layout_width="45dp"
                             android:layout_height="35.36dp"
                             android:layout_marginStart="24dp"
@@ -135,7 +137,7 @@
                             android:layout_marginTop="10.55dp"
                             android:layout_marginEnd="24dp"
                             android:elevation="1dp"
-                            android:src="@drawable/download"
+                            android:src="@drawable/person2"
                             app:civ_border_color="#fff"
                             app:civ_border_width="2dp" />
 
@@ -153,8 +155,8 @@
                         android:background="@drawable/buttonshape"
                         android:backgroundTint="#fff"
                         android:drawableStart="@drawable/ic_baseline_search_24"
-                        android:padding="10dp"
                         android:drawablePadding="10dp"
+                        android:padding="10dp"
                         android:text="Search for Subjects, Books, Topics, PDFs..."
                         android:textColor="#5F5F5F"
                         android:textSize="13sp" />
@@ -167,10 +169,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rectangle_6"
-                    android:paddingTop="6dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
+                    android:paddingTop="6dp"
                     android:paddingBottom="10dp">
 
 
@@ -178,10 +180,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
-                        android:layout_marginTop="8dp"
                         android:background="@drawable/cardviewbackground2"
                         android:elevation="8dp">
 
@@ -191,11 +193,13 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/maths"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:padding="15dp"
+                                android:onClick="click"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/maths" />
 
@@ -215,14 +219,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/cardviewbackground"
                         android:elevation="8dp"
-                        android:paddingTop="2dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp"
-                        >
+                        android:paddingTop="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -230,11 +233,13 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/chemistry"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:padding="15dp"
+                                android:onClick="click"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/chemistry" />
 
@@ -254,8 +259,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/cardviewbackground"
@@ -267,11 +272,13 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/physics"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:padding="15dp"
+                                android:onClick="click"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/physics" />
 
@@ -291,10 +298,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
                         android:background="@drawable/cardviewbackground"
                         android:elevation="8dp">
 
@@ -304,6 +311,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/whatsapp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -432,9 +440,9 @@
                     android:background="@drawable/buttonshape1"
                     android:drawableStart="@drawable/upload"
                     android:drawableTint="#fff"
-                    android:onClick="askDoubt"
                     android:elevation="10dp"
                     android:fontFamily="@font/poppins"
+                    android:onClick="askDoubt"
                     android:paddingStart="90dp"
                     android:paddingEnd="80dp"
                     android:shadowColor="#000"
@@ -517,9 +525,9 @@
                             android:id="@+id/ncert_solition"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins"
                             android:gravity="top"
-                            android:layout_marginStart="15dp"
                             android:text="@string/ncert_video_solution"
                             android:textAppearance="@style/popular_boo" />
 
@@ -527,8 +535,8 @@
                             android:id="@+id/see_all_1"
                             android:layout_width="match_parent"
                             android:layout_height="19dp"
+                            android:layout_marginEnd="15dp"
                             android:gravity="end"
-                            android:layout_marginStart="15dp"
                             android:text="@string/see_all"
                             android:textAppearance="@style/see_all" />
 
@@ -538,7 +546,7 @@
                         android:id="@+id/ncert_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 
@@ -583,7 +591,7 @@
                         android:id="@+id/jee_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 
@@ -628,7 +636,7 @@
                         android:id="@+id/jee_advance_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                 </LinearLayout>
 
@@ -697,9 +705,9 @@
                             android:id="@+id/blog"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins"
                             android:gravity="top"
-                            android:layout_marginStart="15dp"
                             android:text="Blogs"
                             android:textAppearance="@style/popular_boo" />
 

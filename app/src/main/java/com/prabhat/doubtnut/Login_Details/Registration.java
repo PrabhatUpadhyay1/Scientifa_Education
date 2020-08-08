@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.prabhat.doubtnut.MyBio;
@@ -46,6 +47,7 @@ public class Registration extends AppCompatActivity {
     int RC_SIGN_IN = 100;
     TextInputEditText phoneNumber;
     CountryCodePicker countryCodePicker;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class Registration extends AppCompatActivity {
         google = findViewById(R.id.google);
         mfirestore = FirebaseFirestore.getInstance();
 
+        auth=FirebaseAuth.getInstance();
         login = findViewById(R.id.login_text);
         all_rights = findViewById(R.id.all_rights_);
         logo = findViewById(R.id.logo);
@@ -63,7 +66,6 @@ public class Registration extends AppCompatActivity {
         countryCodePicker = findViewById(R.id.codepicker);
 
         // Configure Google Sign In
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -95,6 +97,8 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+//        Log.i("prabhatUpadhyay",auth.getUid());
+
     }
 
     @Override
@@ -110,9 +114,6 @@ public class Registration extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
 
-            Intent n = new Intent(Registration.this, MyBio.class);
-            startActivity(n);
-            finish();
             Toast.makeText(Registration.this, "Logged in", Toast.LENGTH_SHORT).show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -132,7 +133,12 @@ public class Registration extends AppCompatActivity {
         hashMap.put("Email", googleSignInAccount.getEmail());
         hashMap.put("Name", googleSignInAccount.getDisplayName());
 
-        mfirestore.collection("googleCustomer").document(googleSignInAccount.getId()).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        Intent n = new Intent(Registration.this, MyBio.class);
+        n.putExtra("modeOfLogin",account.getId().toString());
+        startActivity(n);
+        finish();
+
+        mfirestore.collection("googleCustomer").document(googleSignInAccount.getId().toString()).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 finish();
@@ -154,6 +160,7 @@ public class Registration extends AppCompatActivity {
             phoneNumber.setError("Enter the your Mobile Number");
         }
         Intent intent = new Intent(Registration.this, OtpAfterRegistration.class);
+        intent.putExtra("modeOfLogin",auth.getUid().toString());
         intent.putExtra("phoneNumber", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
         Log.i("prabhatno", "+" + countryCodePicker.getFullNumber() + userPhoneNumber);
         startActivity(intent);

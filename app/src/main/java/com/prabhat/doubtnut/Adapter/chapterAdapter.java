@@ -27,9 +27,16 @@ public class chapterAdapter extends RecyclerView.Adapter<chapterAdapter.MyViewHo
 
     List<String> Chapter;
     Context context;
+    String modeOfLogin;
+    String category,subject,level,chap;
 
-    public chapterAdapter(List<String> chapter, Context context) {
+    public chapterAdapter(String category,String subject,String level,String chap,String modeOfLogin,List<String> chapter, Context context) {
         Chapter = chapter;
+        this.category=category;
+        this.subject=subject;
+        this.chap=chap;
+        this.level=level;
+        this.modeOfLogin=modeOfLogin;
         this.context = context;
     }
 
@@ -44,10 +51,15 @@ public class chapterAdapter extends RecyclerView.Adapter<chapterAdapter.MyViewHo
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final String chapter=(Chapter.get(position));
         holder.chapter.setText(chapter);
-        holder.chapter.setOnClickListener(new View.OnClickListener() {
+        holder.open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.open.getContext(), Quiz_Screen.class);
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                intent.putExtra("category",category);
+                intent.putExtra("chap",chap);
+                intent.putExtra("subject",subject);
+                intent.putExtra("level",level);
                 intent.putExtra("chapter",chapter);
                 context.startActivity(intent);
             }

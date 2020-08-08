@@ -21,9 +21,11 @@ public class pdfSolutionAdapter extends RecyclerView.Adapter<pdfSolutionAdapter.
 
     List<String> list,list2;
     Context context;
+    String modeFoLogin;
 
-    public pdfSolutionAdapter(List<String> list, List<String> list2, Context context) {
+    public pdfSolutionAdapter(String modeFoLogin,List<String> list, List<String> list2, Context context) {
         this.list = list;
+        this.modeFoLogin=modeFoLogin;
         this.list2 = list2;
         this.context = context;
     }
@@ -37,19 +39,17 @@ public class pdfSolutionAdapter extends RecyclerView.Adapter<pdfSolutionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-//
-        final String Link = list.get(position);
-//
-//        Log.i("pdflink", Link + "");
-//
+
+        final String Link = list2.get(position);
+        final String Tittle=list.get(position);
         holder.tittle.setText(list.get(position));
-//        Picasso.get().load(list.get(position).getImageUri()).into(holder.imageView);
-//
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.imageView.getContext(), pdfView.class);
                 intent.putExtra("Link", Link);
+                intent.putExtra("Tittle",Tittle);
+                intent.putExtra("modeOfLogin",modeFoLogin);
                 context.startActivity(intent);
             }
         });

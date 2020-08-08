@@ -90,7 +90,7 @@
                 android:padding="12dp"
                 android:text="Search for Subjects, Books, Topics, PDFs..."
                 android:textColor="#5F5F5F"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
@@ -100,7 +100,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
                 android:elevation="1dp"
-                android:src="@drawable/download"
+                android:src="@drawable/person2"
                 app:civ_border_color="#fff"
                 app:civ_border_width="2dp" />
 

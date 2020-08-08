@@ -48,7 +48,7 @@ public class Search_Screen extends AppCompatActivity {
         // searchView=findViewById(R.id.search);
         searchBar = (MaterialSearchBar) findViewById(R.id.search);
         searchBar.setHint("Search for Subjects, Books, Topics, PDFs...");
-        searchBar.setSpeechMode(true);
+        searchBar.setSpeechMode(false);
 
         searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
@@ -58,15 +58,28 @@ public class Search_Screen extends AppCompatActivity {
 
             @Override
             public void onSearchConfirmed(CharSequence text) {
-//                String Data = searchBar.getText();
+                String Data = text.toString().toLowerCase();
                 Toast.makeText(Search_Screen.this, text.toString(), Toast.LENGTH_SHORT).show();
                 list.clear();
                 list2.clear();
                 list3.clear();
                 list4.clear();
-                getData("Class 11","Chemistry",text.toString());
-                getData("Class 11","Mathematics",text.toString());
-                getData("Class 11","Physics",text.toString());
+                getData("Class 11","Chemistry",Data);
+                getData("Class 11","Mathematics",Data);
+                getData("Class 11","Physics",Data);
+
+                getData("Class 12","Chemistry",Data);
+                getData("Class 12","Mathematics",Data);
+                getData("Class 12","Physics",Data);
+
+                getData("JEE Mains","Chemistry",Data);
+                getData("JEE Mains","Mathematics",Data);
+                getData("JEE Mains","Physics",Data);
+
+
+                getData("JEE Advance","Chemistry",Data);
+                getData("JEE Advance","Mathematics",Data);
+                getData("JEE Advance","Physics",Data);
                 searchBar.setText("");
             }
 
@@ -116,7 +129,7 @@ public class Search_Screen extends AppCompatActivity {
 
     public void getData(String category,String subject, String data) {
         firestore.collection(category).document("Subjects").collection(subject)
-                .whereArrayContains("Tittle", data).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .whereArrayContains("searchData", data).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {

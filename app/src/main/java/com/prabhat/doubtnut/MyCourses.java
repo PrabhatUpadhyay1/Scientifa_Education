@@ -18,11 +18,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -30,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.prabhat.doubtnut.Adapter.pdfSolutionAdapter;
 import com.prabhat.doubtnut.Adapter.videoSolutionAdapter;
 import com.prabhat.doubtnut.Model.Maths_Model;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -37,6 +41,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.security.auth.Subject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyCourses extends AppCompatActivity {
 
@@ -66,19 +72,23 @@ public class MyCourses extends AppCompatActivity {
 
     // pdf jee mains and jee advance
     ArrayList<String> list21, list22, list23, list24;
-
-
-
+    String modeOfLogin;
+    CircleImageView profileImage;
+    NavigationView navigationView;
+    TextView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_courses);
 
+        modeOfLogin = getIntent().getStringExtra("modeOfLogin");
+        profileImage = findViewById(R.id.profile_image);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView2 = findViewById(R.id.recycler_view2);
         recyclerView3 = findViewById(R.id.recycler_view3);
         recyclerView4 = findViewById(R.id.recycler_view4);
 
+        searchView = findViewById(R.id.search);
 
 
         recyclerView5 = findViewById(R.id.recycler_view5);
@@ -133,9 +143,9 @@ public class MyCourses extends AppCompatActivity {
 
         adapter2 = new videoSolutionAdapter(list5, list6, list7, list8, this);
 
-        adapter3 = new pdfSolutionAdapter(list9, list10, this);
+        adapter3 = new pdfSolutionAdapter(modeOfLogin,list9, list10, this);
 
-        adapter4 = new pdfSolutionAdapter(list11, list12, this);
+        adapter4 = new pdfSolutionAdapter(modeOfLogin,list11, list12, this);
 
 
         adapter5 = new videoSolutionAdapter(list13, list14, list15, list16, this);
@@ -143,9 +153,9 @@ public class MyCourses extends AppCompatActivity {
         adapter6 = new videoSolutionAdapter(list17, list18, list19, list20, this);
 
 
-        adapter7 = new pdfSolutionAdapter(list21,list22, this);
+        adapter7 = new pdfSolutionAdapter(modeOfLogin,list21,list22, this);
 
-        adapter8 = new pdfSolutionAdapter(list23, list24, this);
+        adapter8 = new pdfSolutionAdapter(modeOfLogin,list23, list24, this);
 
 
         final LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -184,6 +194,7 @@ public class MyCourses extends AppCompatActivity {
         spinner7 = findViewById(R.id.spinner7);
         spinner8 = findViewById(R.id.spinner8);
 
+
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.SUbjects, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -218,6 +229,15 @@ public class MyCourses extends AppCompatActivity {
         adapter8.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner8.setAdapter(adapter8);
 
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyCourses.this, Search_Screen.class));
+            }
+        });
+
+        updateUavigation();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -370,41 +390,59 @@ public class MyCourses extends AppCompatActivity {
             }
         });
 
-
         final DrawerLayout drawerLayout;
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView;
+
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 switch (menuItem.getItemId()) {
                     case R.id.dashboard:
+                        Intent intent2=new Intent(MyCourses.this,dashboard.class);
+                        intent2.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent2);
+                        overridePendingTransition(0,0);
                         Toast.makeText(MyCourses.this, "DashBoard", Toast.LENGTH_SHORT).show();
                         Log.i("clicked", "dashboard");
                         drawerLayout.closeDrawer(GravityCompat.END);
+                        break;
                     case R.id.savedpdf:
+                        Intent intent=new Intent(MyCourses.this,savedPPdf.class);
+                        intent.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(MyCourses.this, "Saved Pdf", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.history:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(MyCourses.this, "History", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.aboutUs:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(MyCourses.this, "About", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.contactus:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(MyCourses.this, "Contact Us", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.setting:
-                        Toast.makeText(MyCourses.this, "Setting", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MyCourses.this,setting_menu.class));
                         overridePendingTransition(0,0);
+                        drawerLayout.closeDrawer(GravityCompat.END);
+                        Toast.makeText(MyCourses.this, "Setting", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
         });
+        navigationView.bringToFront();
 
 
-
-        ImageView profile = findViewById(R.id.profile_image);
-        profile.setOnClickListener(new View.OnClickListener() {
+        profileImage = findViewById(R.id.profile_image);
+        profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.END);
@@ -419,21 +457,25 @@ public class MyCourses extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        startActivity(new Intent(MyCourses.this, Home.class));
-                        Toast.makeText(MyCourses.this, "Home", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(MyCourses.this, Home.class);
+                        intent.putExtra("modeOfLogin",modeOfLogin);
+                        startActivity(intent);
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.myDoubts:
-                        startActivity(new Intent(MyCourses.this, MyDoubt.class));
-                        Toast.makeText(MyCourses.this, "My Doubt", Toast.LENGTH_SHORT).show();
+                        Intent intent1=new Intent(MyCourses.this, MyDoubt.class);
+                        intent1.putExtra("modeOfLogin",modeOfLogin);
+                        startActivity(intent1);
+
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.cources:
-                        Toast.makeText(MyCourses.this, "Favourites", Toast.LENGTH_SHORT).show();
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.practices:
-                        startActivity(new Intent(MyCourses.this, Practices.class));
-                        Toast.makeText(MyCourses.this, "Profile", Toast.LENGTH_SHORT).show();
+                        Intent intent2=new Intent(MyCourses.this, Practices.class);
+                        intent2.putExtra("modeOfLogin",modeOfLogin);
+                        startActivity(intent2);
                         overridePendingTransition(0, 0);
                         return true;
                 }
@@ -706,4 +748,34 @@ public class MyCourses extends AppCompatActivity {
         });
     }
 
+    public  void updateUavigation(){
+        navigationView=findViewById(R.id.navigation_view);
+        View headerView=navigationView.getHeaderView(0);
+        final CircleImageView img=headerView.findViewById(R.id.profile_image1);
+        final TextView username = headerView.findViewById(R.id.username);
+        final TextView editText = headerView.findViewById(R.id.edit_text);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MyCourses.this,MyBio.class);
+                intent.putExtra("modeOfLoging",modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
+        FirebaseFirestore firestore;
+        firestore=FirebaseFirestore.getInstance();
+        firestore.collection("User").document(modeOfLogin).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                Picasso.get().load(documentSnapshot.getString("ImageUri")).into(img);
+                username.setText(documentSnapshot.getString("Name"));
+                Log.i("imgae",documentSnapshot.getString("ImageUri")+"");
+                Log.i("Tag1",modeOfLogin);
+                Picasso.get().load(documentSnapshot.getString("ImageUri")).into(profileImage);
+
+            }
+        });
+    }
 }

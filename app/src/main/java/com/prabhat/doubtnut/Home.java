@@ -11,8 +11,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +41,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -52,11 +56,16 @@ import com.prabhat.doubtnut.Adapter.videoSolutionAdapter;
 import com.prabhat.doubtnut.Login_Details.Login_Page;
 import com.prabhat.doubtnut.Model.Blog_Model;
 import com.prabhat.doubtnut.Model.Maths_Model;
+import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity {
 
@@ -68,6 +77,7 @@ public class Home extends AppCompatActivity {
     blogAdapter blogadapter;
     pdfSolutionAdapter pdfAdapter;
     ArrayList<Maths_Model> bookList;
+    StorageReference storageReference;
     //NCERT Videos
     ArrayList<String> TittleList, ThumbnailList, LinkList, PdfList;
     // jee mains
@@ -80,31 +90,32 @@ public class Home extends AppCompatActivity {
     //pdf
     ArrayList<String> pdfTittle, pdfLink;
     RecyclerView bookRecyclerView, ncertRecyclerView, jeeMainsRecyclerView, jeeAdvanceRecyclerView, pdfRecyclerView, blogrecyclerView;
-
     TextView searchView;
     DrawerLayout drawerLayout;
-
+    CircleImageView profileImage;
     EditText writeDoubt;
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView;
     private int gallary_pic = 200;
-
     ImageView imageView;
     private Uri imageuri;
-
+    String modeOfLogin;
+    ProgressDialog dialogClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         searchView = findViewById(R.id.search_view);
 
+        profileImage = findViewById(R.id.profile_image);
         writeDoubt = findViewById(R.id.writedoubt);
         uploadDoubt = findViewById(R.id.upload);
-
+        dialogClass = new ProgressDialog(this);
         //NCERT List
         TittleList = new ArrayList<String>();
         ThumbnailList = new ArrayList<String>();
@@ -127,14 +138,15 @@ public class Home extends AppCompatActivity {
 //
         pdfTittle = new ArrayList<>();
         pdfLink = new ArrayList<>();
+        storageReference = FirebaseStorage.getInstance().getReference().child("doubtImage");
 
-
+        modeOfLogin = getIntent().getStringExtra("modeOfLogin");
         bookAdapter = new bookSolutionAdapter(bookList, this);
         ncertAdapter = new videoSolutionAdapter(TittleList, ThumbnailList, LinkList, PdfList, this);
         jeeMainsAdapter = new videoSolutionAdapter(jeeMainsTittle, jeeMainsThumbnail, jeeMainsLinkList, jeeMainsPdfList, this);
         getJeeAdvanceAdapter = new videoSolutionAdapter(jeeAdvanceTittle, jeeAdvanceThumbnail, jeeAdvanceLinkList, jeeAdvancePdfList, this);
 
-        pdfAdapter = new pdfSolutionAdapter(pdfTittle, pdfLink, this);
+        pdfAdapter = new pdfSolutionAdapter(modeOfLogin,pdfTittle, pdfLink, this);
         blogadapter = new blogAdapter(blogTittle, blogDescription, blogLink, this);
 
 
@@ -163,15 +175,8 @@ public class Home extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager6 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         blogrecyclerView.setLayoutManager(linearLayoutManager6);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
 
-        ImageView profile = findViewById(R.id.profile_image);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.END);
-            }
-        });
+
 
 
         searchView.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +186,21 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        ImageView whatsapp = findViewById(R.id.whatsapp);
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mobileNumber = "8800622475dd";
+                boolean installed = appInstalledOrNot("com.whatsapp");
+                if (installed) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + "+91" + mobileNumber));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Home.this, "Whatsapp not installed in your device", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -190,32 +210,32 @@ public class Home extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.home:
-                        Toast.makeText(Home.this, "Home", Toast.LENGTH_SHORT).show();
                         overridePendingTransition(0, 0);
-                        return true;
+                        break;
                     case R.id.myDoubts:
                         Intent intent = new Intent(Home.this, MyDoubt.class);
+                        intent.putExtra("modeOfLogin", modeOfLogin);
                         startActivity(intent);
-                        Toast.makeText(Home.this, "My Doubt", Toast.LENGTH_SHORT).show();
                         overridePendingTransition(0, 0);
-                        return true;
+                        break;
                     case R.id.cources:
-                        startActivity(new Intent(Home.this, MyCourses.class));
+                        Intent intent1 = new Intent(Home.this, MyCourses.class);
+                        intent1.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent1);
                         overridePendingTransition(0, 0);
-                        Toast.makeText(Home.this, "Favourites", Toast.LENGTH_SHORT).show();
-                        overridePendingTransition(0, 0);
-                        return true;
+                        break;
                     case R.id.practices:
-                        startActivity(new Intent(Home.this, Practices.class));
+                        Intent intent2 = new Intent(Home.this, Practices.class);
+                        intent2.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent2);
                         overridePendingTransition(0, 0);
-                        Toast.makeText(Home.this, "Profile", Toast.LENGTH_SHORT).show();
-                        overridePendingTransition(0, 0);
-                        return true;
+                        break;
                 }
                 return false;
             }
         });
 
+        drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -223,24 +243,54 @@ public class Home extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.dashboard:
+                        Intent intent2=new Intent(Home.this,dashboard.class);
+                        intent2.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent2);
+                        overridePendingTransition(0,0);
                         Toast.makeText(Home.this, "DashBoard", Toast.LENGTH_SHORT).show();
                         Log.i("clicked", "dashboard");
                         drawerLayout.closeDrawer(GravityCompat.END);
+                        break;
                     case R.id.savedpdf:
+                        Intent intent=new Intent(Home.this,savedPPdf.class);
+                        intent.putExtra("modeOfLogin", modeOfLogin);
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(Home.this, "Saved Pdf", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.history:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(Home.this, "History", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.aboutUs:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(Home.this, "About", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.contactus:
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(Home.this, "Contact Us", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.setting:
+                        startActivity(new Intent(Home.this,setting_menu.class));
+                        overridePendingTransition(0,0);
+                        drawerLayout.closeDrawer(GravityCompat.END);
                         Toast.makeText(Home.this, "Setting", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
         });
-//        getBookSolutionDataData();
+        navigationView.bringToFront();
+
+
+        profileImage = findViewById(R.id.profile_image);
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.END);
+            }
+        });
+        //        getBookSolutionDataData();
 
         getVideoSolution("Class 11", "Mathematics");
         getVideoSolution("Class 11", "Physics");
@@ -259,16 +309,106 @@ public class Home extends AppCompatActivity {
         getJeeAdvanceSolution("Physics");
 
         getPdfSolution("Class 11", "Mathematics");
+        getPdfSolution("Class 11", "Chemistry");
+        getPdfSolution("Class 11", "Physics");
+
         Blog();
+
+        updateUavigation();
+
+        final TextView seeAll1 = findViewById(R.id.see_all_1);
+        seeAll1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, seeAllView.class);
+                intent.putExtra("clicked", "seeAll1");
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
+        final TextView seeAll2 = findViewById(R.id.see_all_2);
+        seeAll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, seeAllView.class);
+                intent.putExtra("clicked", "seeAll2");
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
+        final TextView seeAll3 = findViewById(R.id.see_all_3);
+        seeAll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, seeAllView.class);
+                intent.putExtra("clicked", "seeAll3");
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
+
+        final TextView seeAll4 = findViewById(R.id.see_all_5);
+        seeAll4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, pdfseeAllView.class);
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                intent.putExtra("modeOfLogin",modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
 
         Send = findViewById(R.id.send);
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Doubt=writeDoubt.getText().toString().trim();
-                firestore.collection("UserInfo").document(auth.getUid()).update("Doubt",Doubt);
+                dialogClass.show();
+                dialogClass.setMessage("Please wait a moment");
+                String Doubt = writeDoubt.getText().toString().trim();
+//                List<String> list = new ArrayList<>();
+//                list.add(Doubt);
+//                Map<Object, Object> map = new HashMap<>();
+//                map.put("Doubt",list);
+                if (Doubt.isEmpty()) {
+                    writeDoubt.requestFocus();
+                    writeDoubt.setError("Write your doubt here...");
+                }
+                if (!Doubt.isEmpty()) {
+                    firestore.collection("User").document(modeOfLogin)
+                            .update("doubtText", FieldValue.arrayUnion(Doubt)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            dialogClass.hide();
+                            Toast.makeText(Home.this, "Sent", Toast.LENGTH_SHORT).show();
+                            writeDoubt.setText("");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            dialogClass.hide();
+                            Toast.makeText(Home.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
+    }
+
+    private boolean appInstalledOrNot(String url) {
+
+        PackageManager packageManager = getPackageManager();
+        boolean app_installed;
+        try {
+            packageManager.getPackageInfo(url, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
     }
 
     // ask doubt dialog
@@ -281,7 +421,7 @@ public class Home extends AppCompatActivity {
         imageView = view1.findViewById(R.id.imageView);
         Button uploadImage = view1.findViewById(R.id.upload);
 
-        uploadImage.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -292,10 +432,64 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(true);
 
         alertDialog.show();
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ArrayList<String> list = new ArrayList<>();
+//                list.add(imageuri.toString());
+
+                if(imageuri == null){
+                    Toast.makeText(Home.this, "Upload your doubt", Toast.LENGTH_SHORT).show();
+                }
+                if(imageuri!=null) {
+                    dialogClass.show();
+                    dialogClass.setMessage("Uploading....");
+                    final StorageReference ref = storageReference.child("doubtImage" + UUID.randomUUID());
+                    ref.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    firestore.collection("User").document(modeOfLogin)
+                                            .update("doubtPhoto", FieldValue.arrayUnion(uri.toString()))
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            dialogClass.hide();
+                                            alertDialog.hide();
+                                            imageuri=null;
+                                            Toast.makeText(Home.this, "Doubt sent successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Home.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            dialogClass.hide();
+                                            alertDialog.hide();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            dialogClass.hide();
+                            alertDialog.hide();
+                            Toast.makeText(Home.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
     //getting book solution
@@ -313,7 +507,6 @@ public class Home extends AppCompatActivity {
 //            }
 //        });
 //    }
-
 
     public void getVideoSolution(String category, String Subject) {
         firestore.collection(category).document("Subjects").collection(Subject).addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -510,5 +703,66 @@ public class Home extends AppCompatActivity {
             imageuri = data.getData();
             imageView.setImageURI(imageuri);
         }
+    }
+
+    //    public void getUserData() {
+//        firestore.collection("User").document(modeOfLogin).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+//                Log.i("imgae",documentSnapshot.getString("ImageUri")+"");
+//                Log.i("Tag1",modeOfLogin);
+//            }
+//        });
+//    }
+    public void updateUavigation() {
+        navigationView = findViewById(R.id.navigation_view);
+        View headerView = navigationView.getHeaderView(0);
+        final CircleImageView img = headerView.findViewById(R.id.profile_image1);
+        final TextView username = headerView.findViewById(R.id.username);
+        final TextView editText = headerView.findViewById(R.id.edit_text);
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, MyBio.class);
+                intent.putExtra("modeOfLogin", modeOfLogin);
+                startActivity(intent);
+            }
+        });
+
+        firestore.collection("User").document(modeOfLogin).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                Picasso.get().load(documentSnapshot.getString("ImageUri")).into(img);
+                username.setText(documentSnapshot.getString("Name"));
+                Log.i("imgae", documentSnapshot.getString("ImageUri") + "");
+                Log.i("Tag1", modeOfLogin);
+                Picasso.get().load(documentSnapshot.getString("ImageUri")).into(profileImage);
+
+            }
+        });
+    }
+
+    public void click(View v){
+        String data;
+        switch (v.getId()){
+            case R.id.maths:
+                data="Mathematics";
+                break;
+            case R.id.chemistry:
+                data="Chemistry";
+                break;
+            case R.id.physics:
+                data="Physics";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
+        Intent i=new Intent(Home.this,coursesCategory.class);
+        i.putExtra("data",data);
+        i.putExtra("modeOfLogin",modeOfLogin);
+        startActivity(i);
     }
 }

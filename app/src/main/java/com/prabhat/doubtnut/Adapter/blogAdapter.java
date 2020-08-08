@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.prabhat.doubtnut.Model.Maths_Model;
 import com.prabhat.doubtnut.R;
+import com.prabhat.doubtnut.blogView;
 import com.prabhat.doubtnut.pdfView;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class blogAdapter extends RecyclerView.Adapter<blogAdapter.MyViewHolder> 
         holder.fullView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.fullView.getContext(), pdfView.class);
+                Intent intent = new Intent(holder.fullView.getContext(), blogView.class);
                 intent.putExtra("Link", Link);
                 context.startActivity(intent);
             }

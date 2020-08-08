@@ -1,42 +1,31 @@
 package com.prabhat.doubtnut.Model;
 
+import java.util.List;
+
 public class MyDoubtModel {
 
-    private String doubtImage;
-    private String doubtText;
-    private String answered;
+    private List<String> doubtPhoto;
+    private List<String> doubtText;
+    private List<String> answered;
 
 
-    public String getDoubtImage() {
-        return doubtImage;
+    public List<String> getDoubtPhoto() {
+        return doubtPhoto;
     }
 
-    public void setDoubtImage(String doubtImage) {
-        this.doubtImage = doubtImage;
-    }
-
-    public String getDoubtText() {
+    public List<String> getDoubtText() {
         return doubtText;
     }
 
-    public void setDoubtText(String doubtText) {
-        this.doubtText = doubtText;
-    }
-
-    public String getAnswered() {
+    public List<String> getAnswered() {
         return answered;
     }
 
-    public void setAnswered(String answered) {
-        this.answered = answered;
-    }
-
-    public MyDoubtModel(String doubtImage, String doubtText, String answered) {
-        this.doubtImage = doubtImage;
+    public MyDoubtModel(List<String> doubtPhoto, List<String> doubtText, List<String> answered) {
+        this.doubtPhoto = doubtPhoto;
         this.doubtText = doubtText;
         this.answered = answered;
     }
-
 
     public MyDoubtModel() {
 

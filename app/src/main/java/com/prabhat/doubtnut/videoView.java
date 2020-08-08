@@ -24,7 +24,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.prabhat.doubtnut.Adapter.recommendedVideoAdapter;
+import com.prabhat.doubtnut.Adapter.reccomendedAdapter;
+import com.prabhat.doubtnut.Adapter.videoSolutionAdapter;
 import com.prabhat.doubtnut.Model.Maths_Model;
 
 import java.util.ArrayList;
@@ -34,28 +35,47 @@ public class videoView extends AppCompatActivity {
     //    MKPlayer mkplayer;
     VideoView videoView;
     TextView likes;
-    recommendedVideoAdapter adapter;
+    reccomendedAdapter adapter;
     RecyclerView recyclerView;
     List<Maths_Model> list;
     ImageView fullScreen;
     Button DownloadPdf;
+    TextView tittle;
 
+    List<String> list1,list2,list3,list4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoview);
 
+        list1=new ArrayList<>();
+        list2=new ArrayList<>();
+        list3=new ArrayList<>();
+        list4=new ArrayList<>();
+        //reccomnded
+        list1=getIntent().getStringArrayListExtra("list");
+        list2=getIntent().getStringArrayListExtra("list2");
+        list3=getIntent().getStringArrayListExtra("list3");
+        list4=getIntent().getStringArrayListExtra("list4");
+
+        recyclerView=findViewById(R.id.recycler_view);
+
+        adapter = new reccomendedAdapter(list1, list2, list3, list4, this);
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager1);
+
+
+
         videoView = findViewById(R.id.video_view);
-        likes = findViewById(R.id.likes);
         final String Link = getIntent().getStringExtra("Link");
         final String PDF = getIntent().getStringExtra("PDF");
         String Tittle = getIntent().getStringExtra("Video Tittle");
         list = new ArrayList<>();
         DownloadPdf = findViewById(R.id.pdf);
         fullScreen = findViewById(R.id.full_screen_icon);
-        adapter = new recommendedVideoAdapter(list, this);
-        recyclerView = findViewById(R.id.recycler_view);
-
+        tittle=findViewById(R.id.tittle);
+        tittle.setText(Tittle);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         getVideoSolution("Class 12","Mathematics");
@@ -77,46 +97,15 @@ public class videoView extends AppCompatActivity {
         });
 
 
-        // int Likes=getIntent().getIntExtra("Likes",0);
-
-        // Log.i("vidoe",Likes+"");
-
-//        likes.setText(Likes+"");
-
-
-        //setting MediaController
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
 
 
-//
-//        mediaController.show();
-
-        //setting Video View;
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(Uri.parse(Link));
         videoView.start();
 
         mediaController.isShowing();
-//        mediaController.hide();
-//        mkplayer = new MKPlayer(this);
-//        mkplayer.play(Link);
-//
-//        mkplayer.setPlayerCallbacks(new MKPlayer.playerCallbacks() {
-//            @Override
-//            public void onNextClick() {
-//                //It is the method for next song.It is called when you pressed the next icon
-//                //Do according to your requirement
-//            }
-//
-//            @Override
-//            public void onPreviousClick() {
-//                //It is the method for previous song.It is called when you pressed the previous icon
-//                //Do according to your requirement
-//            }
-//        });
-////        MKPlayerActivity.configPlayer(this).play(Link);
-//
     }
 
     @Override
